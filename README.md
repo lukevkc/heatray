@@ -1,7 +1,7 @@
 <br/>
 <p align="center">
   <a href="https://github.com/lukevkc/heatray">
-    <img src="heatray-logo-no-background.png" alt="Logo" width="80" height="80">
+    <img src="heatray-logo-no-background.png" alt="Logo" height="200">
   </a>
 
   <h3 align="center">heatray</h3>
