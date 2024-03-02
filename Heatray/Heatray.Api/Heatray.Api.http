@@ -1,0 +1,6 @@
+@Heatray.Api_HostAddress = http://localhost:5262
+
+GET {{Heatray.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
