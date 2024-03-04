@@ -1,36 +1,57 @@
+using Heatray.Infrastructure.Configurations.Logging;
+using Serilog;
 
 namespace Heatray.Api
 {
     public class Program
     {
-        public static void Main(string[] args)
+        private static IConfigurationRoot? _configurationRoot;
+
+        public static async Task Main(string[] args)
         {
-            var builder = WebApplication.CreateBuilder(args);
+            _configurationRoot = new ConfigurationBuilder()
+                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+                .AddJsonFile("appsettings.json")
+                .AddJsonFile(
+                    $"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json",
+                    optional: true)
+                .Build();
 
-            // Add services to the container.
+            Log.Logger = new LoggerConfiguration()
+                .ConfigureLogging()
+                .CreateBootstrapLogger();
 
-            builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
-
-            var app = builder.Build();
-
-            // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
+            try
             {
-                app.UseSwagger();
-                app.UseSwaggerUI();
+                Log.Information("Starting web host.");
+                var host = CreateHostBuilder(args)
+                    .ConfigureAppConfiguration(x => x.AddUserSecrets<Program>())
+                    .Build();
+
+                using var scope = host.Services.CreateScope();
+                await host.RunAsync();
             }
+            catch (Exception ex)
+            {
+                Log.Fatal(ex, "Host terminated unexpectedly.");
+            }
+            finally
+            {
+                await Log.CloseAndFlushAsync();
+            }
+        }
 
-            app.UseHttpsRedirection();
-
-            app.UseAuthorization();
-
-
-            app.MapControllers();
-
-            app.Run();
+        public static IHostBuilder CreateHostBuilder(string[] args)
+        {
+            return Host.CreateDefaultBuilder(args)
+                .UseSerilog()
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    _ = webBuilder.UseStartup<Startup>().ConfigureAppConfiguration(builder =>
+                    {
+                        if (_configurationRoot != null) _ = builder.AddConfiguration(_configurationRoot);
+                    });
+                });
         }
     }
 }
