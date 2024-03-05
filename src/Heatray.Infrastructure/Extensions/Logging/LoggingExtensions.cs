@@ -3,7 +3,7 @@ using Serilog.Events;
 using Serilog.Exceptions;
 using Serilog.Exceptions.Core;
 
-namespace Heatray.Infrastructure.Configurations.Logging;
+namespace Heatray.Infrastructure.Extensions.Logging;
 
 public static class LoggingExtensions
 {

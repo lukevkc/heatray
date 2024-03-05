@@ -19,4 +19,5 @@ message MessageProcessorRequest {
 
 message MessageProcessorReply {
   string message = 1;
+  string correlationId = 2;
 }

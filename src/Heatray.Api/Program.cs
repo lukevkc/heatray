@@ -1,4 +1,4 @@
-using Heatray.Infrastructure.Configurations.Logging;
+using Heatray.Infrastructure.Extensions.Logging;
 using Serilog;
 
 namespace Heatray.Api

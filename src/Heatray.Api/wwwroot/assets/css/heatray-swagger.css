@@ -1,7 +1,6 @@
 html {
   background-color: white;
 }
-
 .swagger-ui {
   background-color: white;
 }
@@ -10,8 +9,8 @@ html {
   border-bottom: none;
 }
 .swagger-ui img {
-  content: url("../images/heatray_logo.png");
-  height: 60px;
+    content: url("../images/heatray_logo.png");
+    height: 60px;
 }
 .swagger-ui select {
   border: 2px solid white !important;
@@ -23,10 +22,10 @@ html {
   background-color: white;
 }
 .swagger-ui .opblock-tag {
-  background-color: white;
-  border-color: white;
-  color: #fff;
-  border-radius: 10px;
+    background-color: white;
+    border-color: #F0917D;
+    color: #61affe;
+    border-radius: 10px;
 }
 .swagger-ui .btn {
   background-color: #fff;
@@ -37,18 +36,21 @@ html {
   background-color: white;
 }
 .swagger-ui .btn use {
-  fill: white;
+    fill: #F0917D;
 }
 .swagger-ui .opblock-summary {
-  color: #F0917D;
-  border-color: white !important;
+    color: #F0917D;
+    border-color: #F0917D !important;
 }
 .swagger-ui .opblock {
-  background-color: white;
-  border-color: white !important;
+    background-color: white;
+    border-color: #F0917D !important;
 }
 .swagger-ui .block-desktop {
   background-color: white;
+}
+.title {
+   color: #61affe !important;
 }
 
 /*# sourceMappingURL=heatray-swagger.css.map */

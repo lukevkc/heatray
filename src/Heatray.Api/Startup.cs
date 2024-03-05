@@ -1,6 +1,7 @@
 ﻿using FluentValidation.AspNetCore;
-using Heatray.Api.GRPC.Interceptors;
-using Heatray.Api.GRPC.Services;
+using Heatray.Api.gRPC.Interceptors;
+using Heatray.Api.gRPC.Services;
+using Heatray.Infrastructure;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.OpenApi.Models;
 
@@ -32,8 +33,11 @@ public class Startup
                 ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
         });
         services.AddOptions();
+        services.AddInfrastructure(Configuration);
         services.AddGrpc(options =>
         {
+            options.Interceptors.Add<CorrelationInterceptor>();
+            options.Interceptors.Add<ErrorInterceptor>();
             options.Interceptors.Add<AuthInterceptor>();
         }).AddJsonTranscoding();
         services.AddGrpcSwagger();
