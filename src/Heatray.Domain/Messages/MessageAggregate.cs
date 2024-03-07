@@ -1,4 +1,5 @@
-﻿using Heatray.Domain.Abstractions.Models;
+﻿using System.Net;
+using Heatray.Domain.Abstractions.Models;
 using Heatray.Domain.Messages.Enumerations;
 using Heatray.Domain.Messages.MessageParts;
 
@@ -8,15 +9,50 @@ public class MessageAggregate : AggregateRoot<EntityId, Guid>
 {
     private readonly List<SendAttempt> _sendAttempts = new();
 
-    public Message Message { get; }
-    public CorrelationId CorrelationIdentifier { get; }
+    public MessageBase Message { get; private set; } = default!;
+    public CorrelationId CorrelationIdentifier { get; private set; } = default!;
+    public MessageSender Sender { get; private set; } = default!;
+    public MessageBlockade? Blockade { get; private set; }
     public bool WaitsForSend { get; private set; } = true;
-    public MessagePriorityEnum Priority { get; }
-    public MessageSender Sender { get; }
-    public MessageBlockade? Blockade { get; }
+    public MessagePriorityEnum Priority { get; private set; }
     public IEnumerable<SendAttempt> SendAttempts => _sendAttempts;
 
-    public MessageAggregate()
+    private MessageAggregate()
     {
+    }
+
+    private MessageAggregate(MessageBase message, CorrelationId correlationIdentifier, MessagePriorityEnum priority, MessageSender sender, MessageBlockade? blockade)
+    {
+        Message = message;
+        CorrelationIdentifier = correlationIdentifier;
+        Priority = priority;
+        Sender = sender;
+        Blockade = blockade;
+    }
+
+    public static MessageAggregate Create(MessageBase message, CorrelationId correlationIdentifier,
+        MessagePriorityEnum priority, MessageSender sender, MessageBlockade? blockade)
+    {
+        var messageAggregate = new MessageAggregate(message, correlationIdentifier, priority, sender, blockade);
+        return messageAggregate;
+    }
+
+    public void SetWaitsForSend(bool waitForSend)
+    {
+        WaitsForSend = waitForSend;
+    }
+
+    public void SetSendAttempt(SendAttempt sendAttempt)
+    {
+        _sendAttempts.Add(sendAttempt);
+        if (sendAttempt.StatusCode == HttpStatusCode.OK)
+        {
+            WaitsForSend = false;
+        }
+    }
+
+    public void RemoveBlockade()
+    {
+        Blockade = null;
     }
 }
