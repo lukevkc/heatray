@@ -2,6 +2,7 @@
 
 public class SMSMessage : MessageBase
 {
+
     public override Task ProcessAsync()
     {
         throw new NotImplementedException();
