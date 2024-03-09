@@ -3,16 +3,18 @@
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER app
 WORKDIR /app
-EXPOSE 8080
-EXPOSE 8081
+EXPOSE 80
+EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["Heatray.Api/Heatray.Api.csproj", "Heatray.Api/"]
-RUN dotnet restore "./Heatray.Api/./Heatray.Api.csproj"
+COPY ["src/Heatray.Api/Heatray.Api.csproj", "src/Heatray.Api/"]
+COPY ["src/Heatray.Application/Heatray.Application.csproj", "src/Heatray.Application/"]
+COPY ["src/Heatray.Infrastructure/Heatray.Infrastructure.csproj", "src/Heatray.Infrastructure/"]
+RUN dotnet restore "./src/Heatray.Api/./Heatray.Api.csproj"
 COPY . .
-WORKDIR "/src/Heatray.Api"
+WORKDIR "/src/src/Heatray.Api"
 RUN dotnet build "./Heatray.Api.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
@@ -22,4 +24,4 @@ RUN dotnet publish "./Heatray.Api.csproj" -c $BUILD_CONFIGURATION -o /app/publis
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Heatray.Api.dll"]
+ENTRYPOINT ["dotnet", "Heatray.Api.dll", "--urls", "http://0.0.0.0:80"]

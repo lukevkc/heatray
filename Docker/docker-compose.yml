@@ -1,0 +1,28 @@
+version: '3.9'
+
+networks:
+  heatray-network:
+    name: heatray-network
+
+services:
+  heatray-api:
+    build:
+      context: ../
+      dockerfile: src/Heatray.Api/Dockerfile
+    container_name: heatray-api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=80
+    ports:
+      - "5000:80"
+    depends_on:
+      - heatray-postgres
+    networks:
+      - heatray-network
+  heatray-postgres:
+    image: postgres
+    restart: always
+    ports:
+        - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: Admin123!
