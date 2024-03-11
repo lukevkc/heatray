@@ -43,3 +43,8 @@ By leveraging this solution, businesses can reliably deliver thousands of messag
 ## Usage
 
 _For more examples, please refer to the [Documentation](https://github.com/lukevkc/heatray)_
+
+## Todo
+
+Server service
+Library
