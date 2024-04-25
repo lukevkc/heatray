@@ -1,4 +1,4 @@
-po<br/>
+<br/>
 <div align="center">
   <a href="https://github.com/lukevkc/heatray">
     <img src="heatray-logo-no-background.png" alt="Logo" height="200">
@@ -7,7 +7,7 @@ po<br/>
   <h3 align="center">heatray</h3>
 
   <p align="center">
-    Efficient messaging processor for .NET Applications
+    Simple and deadly efficient processor and client for gathering logs from your applications. Built-in .NET integration.
     <br/>
     <br/>
     <a href="https://github.com/lukevkc/heatray"><strong>Explore the docs »</strong></a>
@@ -27,14 +27,15 @@ po<br/>
 
 ## About The Project
 
-Project aims to address the crucial need for reliable and efficient messaging in business systems. In such environments, the timely delivery of a large volume of emails and other messages is paramount. Ensuring the delivery of each message and maintaining a comprehensive historical record of sent communications is essential.
+Project aims to address the vital need for efficient log processing in application environments. The application serve as a robust log processor, where client applications will send logs for processing and storage. Users will have easy access to aggregated logs for analysis and monitoring purposes.
 <br>
-To tackle this challenge, we propose a solution consisting of a client plugin integrated into existing .NET applications and a lightweight and fast server-side application. The client plugin seamlessly connects to the server application using gRPC protocol, enabling efficient communication.
+To meet this new challenge, we propose a solution that includes a client plugin integrated into existing .NET applications and a lightweight, high-performance server-side application. The client plugin seamlessly sends logs to the server application using gRPC protocol, ensuring efficient communication.
 <br>
-The server application, running on any suitable server, is designed to handle high volumes of message traffic with minimal system overhead. It stores message models in its database and processes them, adding comprehensive metadata collected during message handling.
-Application is designed to operate within distributed systems, offering flexibility to run on any machine within the network. This capability allows for seamless integration into existing infrastructure setups, regardless of their complexity or geographical distribution.
+The server application, deployed on any suitable server, is optimized to handle large volumes of log data with minimal system overhead. It stores log entries in its database and processes them, enriching them with comprehensive metadata gathered during log processing.
 <br>
-By leveraging this solution, businesses can reliably deliver thousands of messages while maintaining a complete record of their communications history. Our system offers scalability, performance, and reliability, ensuring critical messages reach their destinations promptly and efficiently.
+This application is designed to operate within distributed systems, providing the flexibility to run on any machine within the network. This capability facilitates seamless integration into existing infrastructure setups, regardless of their complexity or geographical distribution.
+<br>
+By adopting this solution, businesses can effectively process and store logs from their applications, enabling efficient analysis and troubleshooting. Our system offers scalability, performance, and reliability, ensuring that critical log data is processed and stored promptly and efficiently.
 
 ## Built With
 
@@ -48,5 +49,6 @@ _For more examples, please refer to the [Documentation](https://github.com/lukev
 
 Server service
 Library
+Client API/Frontend
 more..
 and more
