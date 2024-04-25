@@ -17,7 +17,7 @@ public class EntityId : StronglyTypedValue<Guid>
         return new EntityId(Guid.NewGuid());
     }
 
-    public static EntityId ReInitialize(Guid value)
+    public static EntityId Init(Guid value)
     {
         return new EntityId(value);
     }
@@ -29,7 +29,7 @@ public class EntityId : StronglyTypedValue<Guid>
 
     public static implicit operator EntityId(Guid userId)
     {
-        return ReInitialize(userId);
+        return Init(userId);
     }
 
     public override string ToString()

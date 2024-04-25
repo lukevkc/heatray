@@ -47,7 +47,7 @@
   </ItemGroup>
 
   <ItemGroup>
-  	<Protobuf Include="gRPC\Protos\MessageProcessor.proto" GrpcServices="Server" />
+  	<Protobuf Include="gRPC\Protos\LogProcessor.proto" GrpcServices="Server" />
   </ItemGroup>
 
   <ItemGroup>

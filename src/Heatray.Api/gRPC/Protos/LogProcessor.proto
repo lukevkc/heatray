@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option csharp_namespace = "Heatray.Api.Protos";
+
+package LogProcessor;
+import "google/api/annotations.proto";
+
+service LogProcessor {
+  rpc ProcessLog (LogProcessorRequest) returns (LogProcessorReply) {
+	  option (google.api.http) = {
+      get: "/log-processor/{log}"
+    };
+  }
+}
+
+message LogProcessorRequest {
+  string log = 1;
+}
+
+message LogProcessorReply {
+  string log = 1;
+  string correlationId = 2;
+}

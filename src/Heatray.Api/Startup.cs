@@ -88,6 +88,6 @@ public class Startup
             options.SwaggerEndpoint("/swagger/v1.0/swagger.json", "heatray GRPC v1.0");
         });
         app.UseGrpcWeb(new GrpcWebOptions { DefaultEnabled = true });
-        app.UseEndpoints(endpoints => { endpoints.MapGrpcService<MessageProcessorService>(); });
+        app.UseEndpoints(endpoints => { endpoints.MapGrpcService<LogProcessorService>(); });
     }
 }

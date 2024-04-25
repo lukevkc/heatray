@@ -1,0 +1,128 @@
+@import './style.css';
+
+:root {
+  --color-bg-0: rgb(202, 216, 228);
+  --color-bg-1: hsl(209, 36%, 86%);
+  --color-bg-2: hsl(224, 44%, 95%);
+  --color-theme-1: #ff3e00;
+  --color-theme-2: #4075a6;
+  --color-text: rgba(0, 0, 0, 0.7);
+  --column-width: 42rem;
+  --column-margin-top: 4rem;
+  color: var(--color-text);
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #fff;
+  min-height: 100vh;
+  margin: 0;
+  background-attachment: fixed;
+  background-size: 100vw 100vh;
+}
+
+.headbar {
+  background-color: transparent;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.headbar-transparent {
+  background-color: transparent;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.headbar-logo {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.headbar-nav {
+  color: #fff;
+  margin-left: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+.headbar-nav a {
+  margin-right: 1rem;
+  color: #fff;
+  text-decoration: none;
+}
+
+.headbar-nav a:hover {
+  text-decoration: underline;
+}
+
+.content-back {
+  min-height: 100vh;
+  width: 100%;
+  transition: background-color 0.5s ease;
+  position: absolute;
+  top: 0px;
+  z-index: -1;
+}
+
+.content {
+  min-height: 80vh;
+}
+
+.tile {
+  background-color: rgba(255, 255, 255, .90);
+  backdrop-filter: blur(5px);
+  color: #111439;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+  margin: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.workspace-tile {
+  background-color: rgba(255, 255, 255, .70);
+  backdrop-filter: blur(12px);
+  color: #111439;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+}
+
+.tile-border {
+  border: 4px solid #3a409b;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.footer {
+  background-color: #fff;
+  color: #111439;
+  padding: 1rem;
+  text-align: center;
+}
+
+#scrollrail-vertical {
+  border: 0px;
+}
+
+a:hover {
+  color: #d1ffee;
+}
+
+button {
+  transition: transform 0.3s;
+}
+
+button:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+button:active {
+  transform: scale(0.97);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
